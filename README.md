@@ -20,13 +20,21 @@ npx skills add jsphbtst/skills --skill anki-vocab-mining
 
 ## Troubleshooting
 
-**Installed, but Claude Code can't find the skill?** `npx skills` keeps skills in an agent-agnostic `.agents/skills/` directory and symlinks them into each agent's path. When that symlink into `.claude/skills/` is missing — common with project-local installs — Claude Code can't see the skill, because it only scans `.claude/skills/`, `~/.claude/skills/`, and plugins, never `.agents/`.
+**Installed, but Claude Code can't find the skill?** When you run `npx skills add` *without* an agent flag, it drops the real files in an agent-agnostic `.agents/skills/` directory and symlinks them **only into agent directories that already exist**. If there's no `.claude/` directory in the target yet, nothing gets linked there — and Claude Code only scans `.claude/skills/`, `~/.claude/skills/`, and plugins, never `.agents/`. The skill installs but stays invisible.
 
-Create the symlink yourself, mirroring what the CLI does:
+Cleanest fix: name the agent explicitly so it installs straight into `.claude/skills/`. The agent is `claude-code` (not `claude`):
+
+```bash
+npx skills add jsphbtst/skills --skill anki-vocab-mining -a claude-code
+```
+
+Add `-g` to install for every project (`~/.claude/skills/`) instead of just the current one.
+
+Already installed into `.agents/` only? Either create a `.claude/` directory and re-run (the CLI will auto-link into it), or add the symlink yourself:
 
 ```bash
 mkdir -p .claude/skills
 ln -s ../../.agents/skills/anki-vocab-mining .claude/skills/anki-vocab-mining
 ```
 
-The real files stay in `.agents/`, so a later `npx skills` update still flows through the symlink (don't copy — a copy drifts on update). Symlink into `~/.claude/skills/` instead if you want the skill available in every project rather than just the current one.
+The real files stay in `.agents/`, so a later `npx skills` update still flows through the symlink — don't copy, a copy drifts on update.
