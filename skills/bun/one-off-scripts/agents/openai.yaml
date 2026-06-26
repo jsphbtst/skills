@@ -1,0 +1,4 @@
+interface:
+  display_name: "Bun One-Off Scripts"
+  short_description: "Create safe Bun one-off scripts"
+  default_prompt: "Use $one-off-scripts to draft a safe Bun one-off script for this project task."

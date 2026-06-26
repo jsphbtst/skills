@@ -1,5 +1,5 @@
 ---
-name: anki-vocab-mining
+name: vocab-mining
 description: >-
   Mine vocabulary, terms, or flashcard content from a source resource — PPTX,
   PDF, Notion page/database, web page, image/screenshot, or plain text/CSV — and

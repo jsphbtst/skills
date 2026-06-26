@@ -1,0 +1,4 @@
+interface:
+  display_name: "Anki Vocab Mining"
+  short_description: "Mine source content into Anki cards"
+  default_prompt: "Use $vocab-mining to mine vocabulary from this source into my Anki deck."
