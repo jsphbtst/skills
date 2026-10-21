@@ -11,12 +11,15 @@ npx skills add jsphbtst/skills
 Or install a single skill:
 
 ```bash
-npx skills add jsphbtst/skills --skill anki-vocab-mining
+npx skills add jsphbtst/skills --skill vocab-mining
 ```
 
 ## Skills
 
-- **[anki-vocab-mining](skills/anki-vocab-mining/SKILL.md)** — mine vocabulary/terms from any source (PPTX, PDF, Notion, web page, image, text/CSV) into an Anki deck via the Anki MCP server: extract candidates, de-dup against the target deck, match the deck's note model, tag for traceability, and sync.
+- **[pr-provide](skills/git/pr-provide/SKILL.md)** — draft a PR title and body that follow the repo's template and past PR conventions, without opening the PR for you.
+- **[commit-message](skills/git/commit-message/SKILL.md)** — draft a commit message matching the codebase's conventions; say "multi" to get staged `git add`/`git commit` commands instead.
+- **[vocab-mining](skills/anki/vocab-mining/SKILL.md)** — mine vocabulary/terms from any source (PPTX, PDF, Notion, web page, image, text/CSV) into an Anki deck via the Anki MCP server: extract candidates, de-dup against the target deck, match the deck's note model, tag for traceability, and sync.
+- **[one-off-scripts](skills/bun/one-off-scripts/SKILL.md)** — build or adapt one-time Bun/TypeScript maintenance scripts (reports, CSV exports, backfills, reconciliation, API audits) that reuse the project's existing script patterns, with env guards, batching, retries, dry-runs, and mutation safety checks.
 
 ## Troubleshooting
 
@@ -25,7 +28,7 @@ npx skills add jsphbtst/skills --skill anki-vocab-mining
 Cleanest fix: name the agent explicitly so it installs straight into `.claude/skills/`. The agent is `claude-code` (not `claude`):
 
 ```bash
-npx skills add jsphbtst/skills --skill anki-vocab-mining -a claude-code
+npx skills add jsphbtst/skills --skill vocab-mining -a claude-code
 ```
 
 Add `-g` to install for every project (`~/.claude/skills/`) instead of just the current one.
@@ -34,7 +37,7 @@ Already installed into `.agents/` only? Either create a `.claude/` directory and
 
 ```bash
 mkdir -p .claude/skills
-ln -s ../../.agents/skills/anki-vocab-mining .claude/skills/anki-vocab-mining
+ln -s ../../.agents/skills/vocab-mining .claude/skills/vocab-mining
 ```
 
 The real files stay in `.agents/`, so a later `npx skills` update still flows through the symlink — don't copy, a copy drifts on update.

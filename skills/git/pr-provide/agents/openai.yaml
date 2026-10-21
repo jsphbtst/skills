@@ -1,0 +1,4 @@
+interface:
+  display_name: "PR Provide"
+  short_description: "Draft a PR title and body matching repo conventions"
+  default_prompt: "Use $pr-provide to write the PR title and body for this branch."
